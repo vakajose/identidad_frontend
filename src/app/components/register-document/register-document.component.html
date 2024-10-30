@@ -1,0 +1,16 @@
+<div class="p-fluid">
+    <h2>Registrar Documento</h2>
+    <form (submit)="registerDocument(); $event.preventDefault()">
+      <div class="p-field">
+        <label for="docType">Tipo de Documento</label>
+        <p-dropdown [options]="docTypes" [(ngModel)]="docType" name="docType" placeholder="Seleccionar tipo de documento"></p-dropdown>
+      </div>
+      <div class="p-field">
+        <label for="docHash">Hash del Documento</label>
+        <input id="docHash" pInputText [(ngModel)]="docHash" name="docHash" required />
+      </div>
+      <br />
+      <button pButton type="submit" label="Registrar Documento" icon="pi pi-check"></button>
+    </form>
+  </div>
+  

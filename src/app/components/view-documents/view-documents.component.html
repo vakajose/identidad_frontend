@@ -1,0 +1,32 @@
+<div class="p-fluid">
+    <h2>Consultar Documentos</h2>
+    <form (submit)="getDocuments(); $event.preventDefault()">
+      <div class="p-field">
+        <label for="providerAddress">Dirección del Proveedor</label>
+        <input id="providerAddress" pInputText [(ngModel)]="providerAddress" name="providerAddress" required />
+      </div>
+      <button pButton type="submit" label="Consultar Documentos" icon="pi pi-search"></button>
+    </form>
+    <br />
+    <button pButton label="Consultar Mis Documentos" icon="pi pi-user" (click)="getMyDocuments()"></button>
+  
+    <p-table *ngIf="documents.length > 0" [value]="documents" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Tipo de Documento</th>
+          <th>Hash del Documento</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-document>
+        <tr>
+          <td>{{ document.docType }}</td>
+          <td>{{ document.docHash }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+    <div *ngIf="errorMessage">
+      <p class="error">{{ errorMessage }}</p>
+    </div>
+  </div>
+  

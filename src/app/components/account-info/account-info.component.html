@@ -1,0 +1,11 @@
+<div>
+    <h2>Información de la Cuenta</h2>
+    <div *ngIf="errorMessage; else accountInfo">
+      <p class="error">{{ errorMessage }}</p>
+    </div>
+    <ng-template #accountInfo>
+      <p><strong>Dirección:</strong> {{ account }}</p>
+      <p><strong>Saldo:</strong> {{ balance }} ETH</p>
+    </ng-template>
+  </div>
+  

@@ -1,0 +1,10 @@
+<div class="p-fluid">
+    <h2>Autorizar Consumidor</h2>
+    <form (submit)="authorizeConsumer(); $event.preventDefault()">
+      <label for="consumerAddress">Dirección del Consumidor:</label>
+      <input id="consumerAddress" pInputText [(ngModel)]="consumerAddress" name="consumerAddress" type="text" required>
+      <br><br>
+      <button pButton type="submit" label="Autorizar Consumidor" icon="pi pi-lock-open"></button>
+    </form>
+  </div>
+  
