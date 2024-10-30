@@ -8,7 +8,7 @@ import identityManagementArtifact from '../../assets/IdentityManagement.json';
 export class Web3Service {
   private web3: any;
   private contract: any;
-  private contractAddress: string = '0x450B2c46122cAd8Ff9bB9C00d6E94Cd34111E407'; // Dirección del contrato desplegado
+  private contractAddress: string = '0xd80855E907F061E9DF6de30E900abD00d44fC6d2'; // Dirección del contrato desplegado
   public account: string = '';
 
   constructor() {
