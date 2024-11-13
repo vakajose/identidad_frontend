@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import identityManagementArtifact from '../../assets/IdentityManagement.json';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import identityManagementArtifact from '../../assets/IdentityManagement.json';
 export class Web3Service {
   private web3: any;
   private contract: any;
-  private contractAddress: string = '0xd80855E907F061E9DF6de30E900abD00d44fC6d2'; // Dirección del contrato desplegado
+  private contractAddress: string = environment.contractAddress;
   public account: string = '';
 
   constructor() {
@@ -89,6 +90,21 @@ export class Web3Service {
       throw new Error('Web3 o el contrato no están inicializados correctamente. Asegúrate de que MetaMask esté conectado.');
     }
     return await this.contract.methods.getMyDocuments().call({ from: this.account });
-  }  
+  }
+
+  async revokeAuthorization(consumerAddress: string) {
+    if (!this.web3 || !this.account || !this.contract) {
+      throw new Error('Web3 o el contrato no están inicializados correctamente. Asegúrate de que MetaMask esté conectado.');
+    }
+    return await this.contract.methods.revokeAuthorization(consumerAddress).send({ from: this.account });
+  }
+  
+  async getAuthorizedConsumers() {
+    if (!this.web3 || !this.account || !this.contract) {
+      throw new Error('Web3 o el contrato no están inicializados correctamente. Asegúrate de que MetaMask esté conectado.');
+    }
+    return await this.contract.methods.getAuthorizedConsumers().call({ from: this.account });
+  }
+  
   
 }

@@ -1,6 +1,32 @@
-<div>
-  <app-account-info></app-account-info>
-  <app-register-document></app-register-document>
-  <app-authorize-consumer></app-authorize-consumer>
-  <app-view-documents></app-view-documents>
+<div class="grid align-content-center justify-content-center">
+  <div class="col-12">
+    <p-card  class="p-card">
+      <app-account-info></app-account-info>
+    </p-card>
+  </div>
+  <div class="col-6 md:col-6">
+    <p-card  class="p-card">
+      <app-view-documents></app-view-documents>
+    </p-card>
+  </div>
+  <div class="col-6 md:col-6">
+    <p-card  class="p-card">
+      <app-register-document></app-register-document>
+    </p-card>
+  </div>
+  <div class="col-6 md:col-6">
+    <p-card class="p-card">
+      <app-view-authorized-consumers></app-view-authorized-consumers>
+    </p-card>
+  </div>
+  <div class="col-6 md:col-6">
+    <p-card  class="p-card">
+      <app-authorize-consumer></app-authorize-consumer>
+    </p-card>
+  </div>
+  <div class="col-6 md:col-6">
+    <p-card  class="p-card">
+      <app-revoke-authorization></app-revoke-authorization>
+    </p-card>
+  </div>
 </div>
