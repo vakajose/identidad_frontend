@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Web3Service } from '../../services/web3.service';
 import { CommonModule } from '@angular/common';
+import { IdentityWeb3Service } from '../../services/identity-web3.service';
 
 @Component({
   selector: 'app-account-info',
@@ -14,7 +14,7 @@ export class AccountInfoComponent implements OnInit {
   balance: string = '';
   errorMessage: string = '';
 
-  constructor(private web3Service: Web3Service) {}
+  constructor(private web3Service: IdentityWeb3Service) {}
 
   async ngOnInit() {
     try {

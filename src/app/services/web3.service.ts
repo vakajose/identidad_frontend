@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
-import identityManagementArtifact from '../../assets/IdentityManagement.json';
+import identityManagementArtifact from '../../assets/IdentityManagementV1.json';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -12,10 +12,7 @@ export class Web3Service {
   private contractAddress: string = environment.contractAddress;
   public account: string = '';
 
-  constructor() {
-    this.initWeb3();
-  }
-
+  
   async initWeb3(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       if (window.ethereum) {

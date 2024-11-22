@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RegisterDocumentComponent } from './components/register-document/register-document.component';
 import { AuthorizeConsumerComponent } from './components/authorize-consumer/authorize-consumer.component';
@@ -7,6 +7,7 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
 import { RevokeAuthorizationComponent } from './components/revoke-authorization/revoke-authorization.component';
 import { ViewAuthorizedConsumersComponent } from './components/view-authorized-consumers/view-authorized-consumers.component';
 import { CardModule } from 'primeng/card';
+import { IdentityWeb3Service } from './services/identity-web3.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,5 +16,7 @@ import { CardModule } from 'primeng/card';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title = 'identidad_frontend';
+
 }
