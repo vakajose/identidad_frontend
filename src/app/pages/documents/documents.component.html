@@ -8,12 +8,22 @@
             </div>
             
             <div class="grid flex justify-content-start">
-                <div *ngFor="let document of myTokens; index as i" class="col-12 xl:col-6 lg:col-6">
+                <div *ngFor="let cedula of cedulas; index as i" class="col-12 xl:col-6 lg:col-6">
                     <div class="card wrap-text">
-                        <h5 >{{myTokensIds[i]}}</h5>
-                        <p>{{document.encryptedData}}</p>
-                        <p>{{document.isCurrent}}</p>
-                        <p>{{document.createdAt}}</p>
+                        <p><strong>Nombre:</strong> {{cedula.nombre}}</p>
+                        <p><strong>Número:</strong> {{cedula.numero}}</p>
+                        <p><strong>Fecha de Nacimiento:</strong> {{cedula.fechaNacimiento | date:'mediumDate'}}</p>
+                        <p><strong>Lugar de Nacimiento:</strong> {{cedula.lugarNacimiento}}</p>
+                        <p><strong>Estado Civil:</strong> {{cedula.estadoCivil}}</p>
+                        <p><strong>Profesión:</strong> {{cedula.profesion}}</p>
+                        <p><strong>Domicilio:</strong> {{cedula.domicilio}}</p>
+                        <p><strong>Serie:</strong> {{cedula.serie}}</p>
+                        <p><strong>Sección:</strong> {{cedula.seccion}}</p>
+                        <p><strong>Fecha de Emisión:</strong> {{cedula.fechaEmision | date:'mediumDate'}}</p>
+                        <p><strong>Fecha de Expiración:</strong> {{cedula.fechaExpiracion | date:'mediumDate'}}</p>                        
+                        <p><strong>Estado:</strong> {{cedula.isCurrent ? 'VIGENTE' : 'EXPIRADO'}}</p>
+                        <p><strong>Última Actualización:</strong> {{cedula.updatedAt | date:'medium'}}</p>
+                        <p><strong>Token ID: </strong> <em>{{cedula.tokenId}}</em></p>
                     </div>
                 </div>
             </div>

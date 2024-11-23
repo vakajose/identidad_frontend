@@ -1,5 +1,5 @@
 .wrap-text {
-    h5, p {
+    h5, p, span {
         word-wrap: break-word; /* Permite que las palabras se dividan y continúen en la siguiente línea */
         white-space: normal;   /* Asegura que el texto se ajuste al contenedor */
     }

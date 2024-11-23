@@ -17,3 +17,21 @@ export function jsonToObject<T>(json: string): T {
 export function toTokenDataCompatible(data: any):string {
     return textToHex(objectToJson(data));
 }
+
+export function fromTokenDataCompatible<T>(hex: string): T {
+    return jsonToObject(hexToText(hex));
+}
+
+export function blockTimestampToDate(timestamp: number): Date {
+    return new Date(timestamp * 1000);
+}
+
+export function documentDataToCedula(data:any, tokenId?:string): any {
+    return {
+        ...fromTokenDataCompatible(data.encryptedData),
+        tokenId: tokenId || null,
+        isCurrent: data.isCurrent,
+        createdAt: blockTimestampToDate(Number(data.createdAt)),
+        updatedAt: blockTimestampToDate(Number(data.updatedAt))
+    };
+}

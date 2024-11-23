@@ -108,7 +108,7 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .getMyTokens()
-      .call({ from: this.account });
+      .call({ from: this.account, gas: 3000000 });
   }
 
   // Obtener tokens por tipo
@@ -124,7 +124,7 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .getTokenData(tokenId)
-      .call({ from: this.account });
+      .call({ from: this.account, gas: 3000000 });
   }
 
   // Escuchar eventos del contrato

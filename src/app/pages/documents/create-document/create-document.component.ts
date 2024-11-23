@@ -11,11 +11,12 @@ import { Cedula } from '../../../models/token.model';
 import { Nullable } from 'primeng/ts-helpers';
 import { hexToText, jsonToObject, objectToJson, textToHex, toTokenDataCompatible } from '../../../utils/convert.utils';
 import { DOCUMENT_TYPES } from '../../../constants/types.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-document',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonModule, SelectButtonModule,InputTextModule,InputNumberModule],
+  imports: [ReactiveFormsModule, ButtonModule, SelectButtonModule, InputTextModule, InputNumberModule],
   templateUrl: './create-document.component.html',
   styleUrl: './create-document.component.scss'
 })
@@ -23,7 +24,7 @@ export class CreateDocumentComponent implements OnInit {
   cedulaForm: FormGroup;
   cedula: Cedula | Nullable = null;
 
-  constructor(private breadcrumbService: AppBreadcrumbService, private fb: FormBuilder, private identityWeb3: IdentityWeb3Service) {
+  constructor(private breadcrumbService: AppBreadcrumbService, private fb: FormBuilder, private identityWeb3: IdentityWeb3Service, private router: Router) {
     this.breadcrumbService.setItems([
       { label: 'Gestion', routerLink: ['/'] },
       { label: 'Documentos', routerLink: ['/documents'] },
@@ -51,18 +52,25 @@ export class CreateDocumentComponent implements OnInit {
     await this.identityWeb3.initWeb3();
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.cedulaForm.valid) {
       this.cedula = this.cedulaForm.value;
-      this.createDocumentOnChain();
+      await this.createDocumentOnChain();
+
     }
   }
 
   async createDocumentOnChain() {
-    if (this.cedula) {
-      let hex = toTokenDataCompatible(this.cedula);
-      await this.identityWeb3.mintToken(DOCUMENT_TYPES.CEDULA,hex)
+    try {
+      if (this.cedula) {
+        let hex = toTokenDataCompatible(this.cedula);
+        await this.identityWeb3.mintToken(DOCUMENT_TYPES.CEDULA, hex)
+        this.router.navigate(['/documents']);
+      }
+    } catch (error: any) {
+      console.error('Error createDocumentOnChain', error);
     }
+
   }
 
 

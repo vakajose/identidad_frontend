@@ -9,7 +9,7 @@ export interface Cedula {
     nombre: string
     numero: string
     fechaNacimiento: Date
-    lugarNacimiento: Date
+    lugarNacimiento: string
     estadoCivil: string
     profesion: string
     domicilio: string
@@ -19,6 +19,11 @@ export interface Cedula {
     fechaEmision: Date
     fechaExpiracion: Date
     codigoQr: string
+
+    tokenId: string
+    isCurrent: boolean       // Indica si es la versión vigente
+    createdAt: Date    // Fecha de creación (timestamp)
+    updatedAt: Date    // Fecha de última actualización (timestamp)
 }
 
 export interface Licencia {
