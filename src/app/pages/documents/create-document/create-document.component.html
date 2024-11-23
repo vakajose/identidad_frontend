@@ -1,0 +1,69 @@
+<div class="grid flex justify-content-center">
+    <div class="col-12 xl:col-8 lg:col-10">
+        <div class="card p-fluid">
+            <form [formGroup]="cedulaForm" (ngSubmit)="onSubmit()">
+                <div class="flex justify-content-between">
+                    <h5>Tokenizacion de Cedula de Identidad</h5>
+                    <button pButton pRipple [disabled]="cedulaForm.invalid" class="mr-2 mb-2">Guardar Documento</button>                
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col-6">
+                        <label for="nombre">Nombre</label>
+                        <input pInputText id="nombre" type="text" formControlName="nombre" />
+                    </div>
+                    <div class="field col-6">
+                        <label for="numero">Número</label>
+                        <input pInputText id="numero" type="text" formControlName="numero" />
+                    </div>
+                    <div class="field col-6">
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <input pInputText id="fechaNacimiento" type="date" formControlName="fechaNacimiento" />
+                    </div>
+                    <div class="field col-6">
+                        <label for="lugarNacimiento">Lugar de Nacimiento</label>
+                        <input pInputText id="lugarNacimiento" type="text" formControlName="lugarNacimiento" />
+                    </div>
+                    <div class="field col-6">
+                        <label for="estadoCivil">Estado Civil</label>
+                        <input pInputText id="estadoCivil" type="text" formControlName="estadoCivil" />
+                    </div>
+                    <div class="field col-6">
+                        <label for="profesion">Profesión</label>
+                        <input pInputText id="profesion" type="text" formControlName="profesion" />
+                    </div>
+                    <div class="field col-12">
+                        <label for="domicilio">Domicilio</label>
+                        <input pInputText id="domicilio" type="text" formControlName="domicilio" />
+                    </div>
+                    <div class="field col-6 md:col-3">
+                        <label for="serie">Serie</label>
+                        <input pInputText id="serie" type="text" formControlName="serie" />
+                    </div>
+                    <div class="field col-6 md:col-3">
+                        <label for="seccion">Sección</label>
+                        <input pInputText id="seccion" type="text" formControlName="seccion" />
+                    </div>
+                    <div class="field col-6 md:col-3">
+                        <label for="fechaEmision">Fecha de Emisión</label>
+                        <input pInputText id="fechaEmision" type="date" formControlName="fechaEmision" />
+                    </div>
+                    <div class="field col-6 md:col-3">
+                        <label for="fechaExpiracion">Fecha de Expiración</label>
+                        <input pInputText id="fechaExpiracion" type="date" formControlName="fechaExpiracion" />
+                    </div>
+                    <div class="field col-12">
+                        <label for="foto">Foto</label>
+                        <input pInputText id="foto" type="text" formControlName="foto" />
+                    </div>
+                    <div class="field col-12">
+                        <label for="codigoQr">Código QR</label>
+                        <input pInputText id="codigoQr" type="text" formControlName="codigoQr" />
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </div>
+    </div>
+</div>

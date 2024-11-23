@@ -1,11 +1,24 @@
-<div>
-    <h2>Información de la Cuenta</h2>
-    <div *ngIf="errorMessage; else accountInfo">
-      <p class="error">{{ errorMessage }}</p>
+<!-- <ng-template #accountInfo> -->
+  <div class="grid dashboard">
+    <div class="col-12 md:col-6">
+      <div class="overview-box overview-box-3">
+        <div class="overview-box-header"></div>
+        <div class="overview-box-content">
+          <div class="overview-box-icon"><i class="pi pi-inbox"></i></div>
+          <div class="overview-box-title">Direcci&oacute;n de Billetera</div>
+          <div class="overview-box-count">{{ account }}</div>
+        </div>
+      </div>
     </div>
-    <ng-template #accountInfo>
-      <p><strong>Dirección:</strong> {{ account }}</p>
-      <p><strong>Saldo:</strong> {{ balance }} ETH</p>
-    </ng-template>
+    <div class="col-12 md:col-6">
+      <div class="overview-box overview-box-2">
+        <div class="overview-box-header"></div>
+        <div class="overview-box-content">
+          <div class="overview-box-icon"><i class="pi pi-ethereum"></i></div>
+          <div class="overview-box-title">Tokens</div>
+          <div class="overview-box-count">{{ balance }} ETH</div>
+        </div>
+      </div>
+    </div>
   </div>
-  
+<!-- </ng-template> -->

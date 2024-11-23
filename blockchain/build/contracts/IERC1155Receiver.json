@@ -628,7 +628,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-11-21T23:19:11.869Z",
+  "updatedAt": "2024-11-22T21:15:50.207Z",
   "devdoc": {
     "details": "Interface that must be implemented by smart contracts in order to receive ERC-1155 token transfers.",
     "kind": "dev",

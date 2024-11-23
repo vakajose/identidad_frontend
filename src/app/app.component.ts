@@ -7,16 +7,36 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
 import { RevokeAuthorizationComponent } from './components/revoke-authorization/revoke-authorization.component';
 import { ViewAuthorizedConsumersComponent } from './components/view-authorized-consumers/view-authorized-consumers.component';
 import { CardModule } from 'primeng/card';
-import { IdentityWeb3Service } from './services/identity-web3.service';
+import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CardModule, RegisterDocumentComponent, AuthorizeConsumerComponent, ViewDocumentsComponent, AccountInfoComponent, RevokeAuthorizationComponent, ViewAuthorizedConsumersComponent],
+  imports: [RouterOutlet, CardModule,
+     //RegisterDocumentComponent, AuthorizeConsumerComponent, ViewDocumentsComponent, AccountInfoComponent, RevokeAuthorizationComponent, ViewAuthorizedConsumersComponent
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   title = 'identidad_frontend';
+
+  layoutMode = 'overlay';
+
+  layoutColor = 'light';
+
+  darkMenu = false;
+
+  isRTL = false;
+
+  inputStyle = 'filled';
+
+  ripple = true;
+
+  constructor(private primengConfig: PrimeNGConfig) { }
+
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+  }
 
 }

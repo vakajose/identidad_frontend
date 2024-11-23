@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import { environment } from '../../environments/environment';
 import identityManagementArtifact from '../../assets/IdentityManagement.json';
+import { DocumentData } from '../models/token.model';
 
 
 @Injectable({
@@ -13,10 +14,6 @@ export class IdentityWeb3Service {
   private contract: any = null;
   private account: string = '';
   private contractAddress: string = environment.contractAddress;
-
-  constructor() {
-    this.initWeb3();
-  }
 
   async initWeb3(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
@@ -71,7 +68,7 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .mintToken(tokenType, encryptedData)
-      .send({ from: this.account });
+      .send({ from: this.account,  gas: 3000000 });
   }
 
   // Actualizar un token existente
@@ -79,7 +76,7 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .updateToken(tokenId, newEncryptedData)
-      .send({ from: this.account });
+      .send({ from: this.account,  gas: 3000000  });
   }
 
   // Autorizar múltiples tokens
@@ -87,7 +84,7 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .authorizeMultiple(consumerAddress, tokenIds)
-      .send({ from: this.account });
+      .send({ from: this.account,  gas: 3000000  });
   }
 
   // Revocar múltiples autorizaciones
@@ -95,7 +92,7 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .revokeMultiple(consumerAddress, tokenIds)
-      .send({ from: this.account });
+      .send({ from: this.account,  gas: 3000000  });
   }
 
   // Obtener tokens de un proveedor
@@ -103,6 +100,14 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .getTokensFromProvider(providerAddress)
+      .call({ from: this.account });
+  }
+
+  //Obtener mis tokens
+  async getMyTokens(): Promise<string[]> {
+    this.ensureContractInitialized();
+    return await this.contract.methods
+      .getMyTokens()
       .call({ from: this.account });
   }
 
@@ -115,7 +120,7 @@ export class IdentityWeb3Service {
   }
 
   // Obtener datos de un token
-  async getTokenData(tokenId: string): Promise<string> {
+  async getTokenData(tokenId: string): Promise<DocumentData> {
     this.ensureContractInitialized();
     return await this.contract.methods
       .getTokenData(tokenId)

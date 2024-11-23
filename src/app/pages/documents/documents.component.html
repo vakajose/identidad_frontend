@@ -1,0 +1,23 @@
+<div class="grid flex justify-content-center">
+    <div class="col-12 xl:col-8 lg:col-10">
+        <div class="card">
+            <div class="col-12 flex justify-content-between">
+                <h5 *ngIf="myTokensIds.length  > 0" >Mis Documentos</h5>
+                <h5 *ngIf="myTokensIds.length == 0" >No tiene documentos registrados</h5>
+                <button pButton pRipple label="Tokenizar Nuevo Documento" icon="pi pi-file" class="mr-2 mb-2" (click)="navigateToCreate()"></button>
+            </div>
+            
+            <div class="grid flex justify-content-start">
+                <div *ngFor="let document of myTokens; index as i" class="col-12 xl:col-6 lg:col-6">
+                    <div class="card wrap-text">
+                        <h5 >{{myTokensIds[i]}}</h5>
+                        <p>{{document.encryptedData}}</p>
+                        <p>{{document.isCurrent}}</p>
+                        <p>{{document.createdAt}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

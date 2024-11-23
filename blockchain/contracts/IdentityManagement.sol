@@ -80,9 +80,14 @@ contract IdentityManagement is ERC1155 {
         }
     }
 
-    // Obtener tokens autorizados por proveedor
+    // Obtener tokens autorizados por algun proveedor
     function getTokensFromProvider(address provider) public view returns (uint256[] memory) {
         return reverseAccess[msg.sender][provider];
+    }
+
+    // Obtener mis tokens
+    function getMyTokens() public view returns (uint256[] memory) {
+        return providerTokens[msg.sender];
     }
 
     // Obtener tokens por tipo
@@ -91,12 +96,12 @@ contract IdentityManagement is ERC1155 {
     }
 
     // Obtener datos del token (verifica autorización)
-    function getTokenData(uint256 tokenId) public view returns (string memory) {
+    function getTokenData(uint256 tokenId) public view returns (TokenData memory) {
         address provider = tokenProviders[tokenId];
         require(provider == msg.sender || authorizations[provider][msg.sender][tokenId], "No autorizado");
 
         uint256 versionCount = tokenVersions[tokenId].length;
-        return tokenVersions[tokenId][versionCount - 1].encryptedData;
+        return tokenVersions[tokenId][versionCount - 1];
     }
 
     // Generar ID único
