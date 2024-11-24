@@ -1,12 +1,12 @@
 <div class="grid flex justify-content-center">
     <div class="col-12 xl:col-8 lg:col-10">
-        <div class="card p-fluid">
+        <div class="card">
             <form [formGroup]="cedulaForm" (ngSubmit)="onSubmit()">
                 <div class="flex justify-content-between">
                     <h5>Tokenizacion de Cedula de Identidad</h5>
                     <button pButton pRipple [disabled]="cedulaForm.invalid" class="mr-2 mb-2">Guardar Documento</button>                
                 </div>
-                <div class="p-formgrid grid">
+                <div class="p-formgrid grid p-fluid">
                     <div class="field col-6">
                         <label for="nombre">Nombre</label>
                         <input pInputText id="nombre" type="text" formControlName="nombre" />

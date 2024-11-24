@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import { environment } from '../../environments/environment';
 import identityManagementArtifact from '../../assets/IdentityManagement.json';
-import { DocumentData } from '../models/token.model';
+import { AddressTokenIds, DocumentData } from '../models/token.model';
 
 
 @Injectable({
@@ -124,6 +124,22 @@ export class IdentityWeb3Service {
     this.ensureContractInitialized();
     return await this.contract.methods
       .getTokenData(tokenId)
+      .call({ from: this.account, gas: 3000000 });
+  }
+
+  // Obtener consumidores autorizados por mí
+  async getConsumers(): Promise<AddressTokenIds[]> {
+    this.ensureContractInitialized();
+    return await this.contract.methods
+      .getConsumers()
+      .call({ from: this.account, gas: 3000000 });
+  }
+
+  // Obtener providers que me han autorizado a mi
+  async getProviders(): Promise<AddressTokenIds[]> {
+    this.ensureContractInitialized();
+    return await this.contract.methods
+      .getProviders()
       .call({ from: this.account, gas: 3000000 });
   }
 

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { blockTimestampToDate, documentDataToCedula } from '../../utils/convert.utils';
+import { DOCUMENT_TYPES } from '../../constants/types.constants';
 
 @Component({
   selector: 'app-documents',
@@ -19,7 +20,8 @@ export class DocumentsComponent implements OnInit {
   myTokensIds: string[] = [];
   myTokens: DocumentData[] = [];
   cedulas: Cedula[] = [];
-  
+  DOCUMENT_TYPES = DOCUMENT_TYPES;
+
   constructor(private breadcrumb:AppBreadcrumbService, private identityWeb3Service: IdentityWeb3Service, private router: Router) {
     this.breadcrumb.setItems([
       { label: 'Gestion', routerLink: ['/'] },

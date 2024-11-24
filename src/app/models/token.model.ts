@@ -1,8 +1,17 @@
 export interface DocumentData {
     encryptedData:string // Datos cifrados del token
+    tokenType: number    // Tipo de token
+    uniqueId: string     // Identificador único del token
     isCurrent: boolean       // Indica si es la versión vigente
     createdAt: number    // Fecha de creación (timestamp)
     updatedAt: number    // Fecha de última actualización (timestamp)
+}
+
+export interface AddressTokenIds {
+    _address: string
+    tokenIds: string[]
+    tokenIdsObject: any[]
+    addressTokenIds: any[]
 }
 
 export interface Cedula {
@@ -21,6 +30,8 @@ export interface Cedula {
     codigoQr: string
 
     tokenId: string
+    tokenType: number    // Tipo de token
+    uniqueId: string     // Identificador único del token
     isCurrent: boolean       // Indica si es la versión vigente
     createdAt: Date    // Fecha de creación (timestamp)
     updatedAt: Date    // Fecha de última actualización (timestamp)

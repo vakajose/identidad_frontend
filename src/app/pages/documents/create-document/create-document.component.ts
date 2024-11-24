@@ -64,7 +64,7 @@ export class CreateDocumentComponent implements OnInit {
     try {
       if (this.cedula) {
         let hex = toTokenDataCompatible(this.cedula);
-        await this.identityWeb3.mintToken(DOCUMENT_TYPES.CEDULA, hex)
+        await this.identityWeb3.mintToken(1, hex)
         this.router.navigate(['/documents']);
       }
     } catch (error: any) {

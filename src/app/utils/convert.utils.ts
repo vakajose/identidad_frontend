@@ -31,7 +31,17 @@ export function documentDataToCedula(data:any, tokenId?:string): any {
         ...fromTokenDataCompatible(data.encryptedData),
         tokenId: tokenId || null,
         isCurrent: data.isCurrent,
+        tokenType: data.tokenType,
+        uniqueId: data.uniqueId,
         createdAt: blockTimestampToDate(Number(data.createdAt)),
         updatedAt: blockTimestampToDate(Number(data.updatedAt))
     };
+}
+
+export function tokenIdsToObjectList(tokenIds: string[]): any[] {
+    return tokenIds.map(tokenId => ({ tokenId: tokenId }));
+}
+
+export function addressTokenToObjectListAuth(addressTokens: any): any[] {
+    return addressTokens.tokenIds.map( (t:string) => ({ tokenId: `${addressTokens._address}|${t}` }));
 }

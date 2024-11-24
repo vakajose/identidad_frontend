@@ -2,14 +2,14 @@
     <div class="col-12 xl:col-8 lg:col-10">
         <div class="card">
             <div class="col-12 flex justify-content-between">
-                <h5 *ngIf="myTokensIds.length  > 0" >Mis Documentos</h5>
-                <h5 *ngIf="myTokensIds.length == 0" >No tiene documentos registrados</h5>
+                <h5>{{myTokensIds.length  > 0?  'Mis Documentos' : 'No tiene documentos registrados'}}</h5>
                 <button pButton pRipple label="Tokenizar Nuevo Documento" icon="pi pi-file" class="mr-2 mb-2" (click)="navigateToCreate()"></button>
             </div>
             
             <div class="grid flex justify-content-start">
                 <div *ngFor="let cedula of cedulas; index as i" class="col-12 xl:col-6 lg:col-6">
                     <div class="card wrap-text">
+                        <h5>{{cedula.tokenType == 1? 'CEDULA DE IDENTIDAD' : 'LICENCIA DE CONDUCIR'}}</h5>
                         <p><strong>Nombre:</strong> {{cedula.nombre}}</p>
                         <p><strong>Número:</strong> {{cedula.numero}}</p>
                         <p><strong>Fecha de Nacimiento:</strong> {{cedula.fechaNacimiento | date:'mediumDate'}}</p>
@@ -23,6 +23,7 @@
                         <p><strong>Fecha de Expiración:</strong> {{cedula.fechaExpiracion | date:'mediumDate'}}</p>                        
                         <p><strong>Estado:</strong> {{cedula.isCurrent ? 'VIGENTE' : 'EXPIRADO'}}</p>
                         <p><strong>Última Actualización:</strong> {{cedula.updatedAt | date:'medium'}}</p>
+                        <p><strong>Unique ID: </strong> <em>{{cedula.uniqueId}}</em></p>
                         <p><strong>Token ID: </strong> <em>{{cedula.tokenId}}</em></p>
                     </div>
                 </div>

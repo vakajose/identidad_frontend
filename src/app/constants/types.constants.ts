@@ -1,5 +1,4 @@
-export const DOCUMENT_TYPES = {
-    CEDULA: 1,
-    LICENCIA: 2
-}
-    
+export const DOCUMENT_TYPES = [
+     { 1: 'Cédula de Identidad' },
+     { 2: 'Licencia de Conducir' }
+]
