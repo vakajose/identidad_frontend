@@ -16,7 +16,7 @@ export const routes: Routes = [
             { path: 'documents/create', component: CreateDocumentComponent},
             { path: 'authorizations', component: AuthorizationsComponent },
             { path: 'authorizations/create', component: CreateAuthorizationComponent },
-            { path: 'consumers', component: ConsumersComponent },
+            { path: 'providers', component: ConsumersComponent },
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]
     },

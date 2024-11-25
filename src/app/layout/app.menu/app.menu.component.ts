@@ -30,7 +30,7 @@ export class AppMenuComponent  implements OnInit{
         label: 'Gestion Externa',
         items: [
           {label: 'Autorizaciones', icon: 'pi pi-fw pi-lock-open', routerLink: ['/authorizations']},
-          {label: 'Consumidores', icon: 'pi pi-fw pi-address-book', routerLink: ['/consumers']}
+          {label: 'Mis Proveedores', icon: 'pi pi-fw pi-address-book', routerLink: ['/providers']}
         ]
       },
 

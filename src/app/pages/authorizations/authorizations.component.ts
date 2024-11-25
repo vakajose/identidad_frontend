@@ -61,9 +61,6 @@ export class AuthorizationsComponent implements OnInit {
   }
 
   onRowSelect(event: any) {
-    console.log(event.data);
-    console.log(this.tokensSelected);
-    console.log(this.isValidSelection);
     this.validateSelection();
   }
 
