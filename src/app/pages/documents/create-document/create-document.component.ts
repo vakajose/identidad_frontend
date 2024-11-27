@@ -31,6 +31,8 @@ export class CreateDocumentComponent implements OnInit {
   frontal!:File ;
   trasera!:File ;
   cedulaImageRequest!: CedulaImageRequest;
+  frontalUrl: string | ArrayBuffer | null = null;
+  traseraUrl: string | ArrayBuffer | null = null;
 
 
   constructor(private breadcrumbService: AppBreadcrumbService, private fb: FormBuilder, private identityWeb3: IdentityWeb3Service, private router: Router, private ocr: OcrOpenaiService) {
@@ -108,11 +110,18 @@ export class CreateDocumentComponent implements OnInit {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      if (input.id === 'trasera') {
-        this.trasera = input.files[0];
-      } else { 
-        this.frontal = input.files[0];
-      }
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (input.id === 'trasera') {
+          this.trasera = file;
+          this.traseraUrl = reader.result;
+        } else {
+          this.frontal = file;
+          this.frontalUrl = reader.result;
+        }
+      };
+      reader.readAsDataURL(file);
     }
   }
   

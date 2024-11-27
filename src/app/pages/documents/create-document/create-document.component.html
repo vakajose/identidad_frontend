@@ -13,14 +13,27 @@
                         <button pButton pRipple class="mr-2 mb-2" [disabled]="!frontal || !trasera" (click)="onConfirmImages()">Extraer Datos</button>
                     </div>  
                 </div>
-                <div *ngIf="modeImages" class="p-formgrid grid p-fluid">
-                    <div class="field col-6">
-                        <label for="frontal">Frontal</label>
-                        <input pInputText id="frontal" type="file" (change)="onFileSelected($event)"/>
+                <div *ngIf="modeImages" class="grid p-fluid">
+                    <div class=" col-6">
+                        <div class="col-12">
+                            <label for="frontal">Frontal</label>
+                            <input pInputText id="frontal" type="file" (change)="onFileSelected($event)"/>
+                        </div>
+                        <div class="col-12">
+                            <!-- Mostrar la imagen capturada -->
+                            <img *ngIf="frontalUrl" [src]="frontalUrl" alt="Frontal" class="w-full"/>
+                        </div>
+                        
                     </div>
-                    <div class="field col-6">
-                        <label for="trasera">Trasera</label>
-                        <input pInputText id="trasera" type="file" (change)="onFileSelected($event)"/>
+                    <div class=" col-6">
+                        <div class="col-12">
+                            <label for="trasera">Trasera</label>
+                            <input pInputText id="trasera" type="file" (change)="onFileSelected($event)"/>
+                        </div>
+                        <div class="col-12">
+                            <!-- Mostrar la imagen capturada -->
+                            <img *ngIf="traseraUrl" [src]="traseraUrl" alt="Trasera" class="w-full"/>
+                        </div>
                     </div>
                 </div>
                 <div *ngIf="!modeImages" class="p-formgrid grid p-fluid">
