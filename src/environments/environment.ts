@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
-    contractAddress: '0xb8551df3c5acde8e3606908079169ea79d63895f'
+    contractAddress: '0x9e44f57068b393adeb83d1b75c221454da96c09b',
+    apiUrl: 'http://localhost:8000'
   };
   

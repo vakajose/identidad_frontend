@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppBreadcrumbService } from '../../../services/app.breadcrumb.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -9,22 +9,31 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { IdentityWeb3Service } from '../../../services/identity-web3.service';
 import { Cedula } from '../../../models/token.model';
 import { Nullable } from 'primeng/ts-helpers';
-import { hexToText, jsonToObject, objectToJson, textToHex, toTokenDataCompatible } from '../../../utils/convert.utils';
-import { DOCUMENT_TYPES } from '../../../constants/types.constants';
+import { toTokenDataCompatible } from '../../../utils/convert.utils';
+import { FileUploadModule } from 'primeng/fileupload';
 import { Router } from '@angular/router';
+import { OcrOpenaiService } from '../../../services/ocr-openai.service';
+import { CommonModule } from '@angular/common';
+import { CedulaImageRequest } from '../../../models/backend-dto.model';
+
 
 @Component({
   selector: 'app-create-document',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonModule, SelectButtonModule, InputTextModule, InputNumberModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, SelectButtonModule, InputTextModule, InputNumberModule, FileUploadModule],
   templateUrl: './create-document.component.html',
   styleUrl: './create-document.component.scss'
 })
 export class CreateDocumentComponent implements OnInit {
   cedulaForm: FormGroup;
   cedula: Cedula | Nullable = null;
+  modeImages = true;
+  frontal!:File ;
+  trasera!:File ;
+  cedulaImageRequest!: CedulaImageRequest;
 
-  constructor(private breadcrumbService: AppBreadcrumbService, private fb: FormBuilder, private identityWeb3: IdentityWeb3Service, private router: Router) {
+
+  constructor(private breadcrumbService: AppBreadcrumbService, private fb: FormBuilder, private identityWeb3: IdentityWeb3Service, private router: Router, private ocr: OcrOpenaiService) {
     this.breadcrumbService.setItems([
       { label: 'Gestion', routerLink: ['/'] },
       { label: 'Documentos', routerLink: ['/documents'] },
@@ -73,5 +82,47 @@ export class CreateDocumentComponent implements OnInit {
 
   }
 
+  changeModeImages() {
+    this.modeImages = !this.modeImages;
+  }
+
+  async onConfirmImages() {
+    this.cedulaImageRequest = new CedulaImageRequest('', '');
+
+    await this.fileToBase64(this.frontal).then((res) => this.cedulaImageRequest.anverso = res.toString())
+    await this.fileToBase64(this.trasera).then((res) => this.cedulaImageRequest.reverso = res.toString())
+
+    this.ocr.ocrCedula(this.cedulaImageRequest).subscribe({
+      next: (res) => {
+        this.cedula = res;
+        console.log('Cedula', this.cedula);
+        this.cedulaForm.patchValue(this.cedula);
+        this.changeModeImages();
+      },
+      error: (error) => {
+        console.error('Error ocrCedula', error);
+      }
+    })
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      if (input.id === 'trasera') {
+        this.trasera = input.files[0];
+      } else { 
+        this.frontal = input.files[0];
+      }
+    }
+  }
+  
+   fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
 
 }

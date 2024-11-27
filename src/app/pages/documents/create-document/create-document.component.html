@@ -4,9 +4,26 @@
             <form [formGroup]="cedulaForm" (ngSubmit)="onSubmit()">
                 <div class="flex justify-content-between">
                     <h5>Tokenizacion de Cedula de Identidad</h5>
-                    <button pButton pRipple [disabled]="cedulaForm.invalid" class="mr-2 mb-2">Guardar Documento</button>                
+                    <div *ngIf="!modeImages" class="flex justify-content-end">
+                        <button pButton pRipple class="p-button-outlined p-button-info mr-2 mb-2" (click)="changeModeImages()">Subir Imagenes</button>
+                        <button pButton pRipple [disabled]="cedulaForm.invalid" class="mr-2 mb-2" >Guardar Documento</button>
+                    </div>
+                    <div *ngIf="modeImages" class="flex justify-content-end">
+                        <button pButton pRipple class="p-button-outlined p-button-info mr-2 mb-2" (click)="changeModeImages()">Modo Manual</button>
+                        <button pButton pRipple class="mr-2 mb-2" [disabled]="!frontal || !trasera" (click)="onConfirmImages()">Extraer Datos</button>
+                    </div>  
                 </div>
-                <div class="p-formgrid grid p-fluid">
+                <div *ngIf="modeImages" class="p-formgrid grid p-fluid">
+                    <div class="field col-6">
+                        <label for="frontal">Frontal</label>
+                        <input pInputText id="frontal" type="file" (change)="onFileSelected($event)"/>
+                    </div>
+                    <div class="field col-6">
+                        <label for="trasera">Trasera</label>
+                        <input pInputText id="trasera" type="file" (change)="onFileSelected($event)"/>
+                    </div>
+                </div>
+                <div *ngIf="!modeImages" class="p-formgrid grid p-fluid">
                     <div class="field col-6">
                         <label for="nombre">Nombre</label>
                         <input pInputText id="nombre" type="text" formControlName="nombre" />
@@ -60,9 +77,6 @@
                         <input pInputText id="codigoQr" type="text" formControlName="codigoQr" />
                     </div>
                 </div>
-
-                
-
             </form>
         </div>
     </div>
