@@ -6,6 +6,7 @@ import { CreateDocumentComponent } from './pages/documents/create-document/creat
 import { AuthorizationsComponent } from './pages/authorizations/authorizations.component';
 import { ConsumersComponent } from './pages/consumers/consumers.component';
 import { CreateAuthorizationComponent } from './pages/authorizations/create-authorization/create-authorization.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,6 @@ export const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]
     },
+    { path: 'landing', component: LandingComponent },
     { path: '**', redirectTo: '/' }
 ];
