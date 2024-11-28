@@ -1,5 +1,6 @@
 export const environment = {
     production: true,
-    contractAddress: '0xE6e0597431B09A1C14875C026a414feb35B52C3B' // Cambia esto si usas una red diferente en producción
+        contractAddress: '0xc77008489f97994f29fd86b2ca1d6b8d89f50595',
+      apiUrl: 'http://144.217.87.90:8000'
   };
   
