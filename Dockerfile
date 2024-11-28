@@ -9,5 +9,5 @@ RUN npm run build --prod
 # Usa Apache para servir la aplicación Angular
 FROM httpd:alpine
 RUN rm -rf /usr/local/apache2/htdocs/*  # Limpia archivos predeterminados
-COPY --from=build /app/dist/identidad-frontend/browser/ /usr/local/apache2/htdocs/
+COPY --from=build /app/dist/identidad_frontend/browser/ /usr/local/apache2/htdocs/
 EXPOSE 80
