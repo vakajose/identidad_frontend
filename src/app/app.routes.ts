@@ -12,7 +12,6 @@ export const routes: Routes = [
     {
         path: '', component: AppMainComponent,
         children: [
-            { path: 'landing', component: LandingComponent },
             { path: 'home', component: WelcomeComponent },
             { path: 'documents', component: DocumentsComponent },
             { path: 'documents/create', component: CreateDocumentComponent},
@@ -22,6 +21,6 @@ export const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]
     },
-    
+    { path: 'landing', component: LandingComponent },
     { path: '**', redirectTo: '/' }
 ];
