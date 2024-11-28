@@ -9,3 +9,15 @@ export class CedulaImageRequest{
         this.prueba = 'prueba'
     }
 }
+
+export class EmailContactRequest{
+    nombre:string
+    email:string
+    mensaje:string
+
+    constructor(nombre:string, email:string, mensaje:string){
+        this.email = email
+        this.mensaje = mensaje
+        this.nombre = nombre
+    }
+}

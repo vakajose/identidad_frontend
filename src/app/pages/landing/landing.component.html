@@ -215,18 +215,18 @@
      -->
                     <div class="col-12 md:col-8 contact-form p-fluid">
                         <div class="col-12">
-                            <input type="text" pInputText class="p-inputtext" placeholder="Nombre" />
+                            <input type="text" pInputText class="p-inputtext" placeholder="Nombre" #name />
                         </div>
     
                         <div class="col-12">
-                            <input type="text" pInputText class="p-inputtext" placeholder="Correo electrónico" />
+                            <input type="text" pInputText class="p-inputtext" placeholder="Correo electrónico" #email />
                         </div>
     
                         <div class="col-12">
-                            <input type="text" pInputText class="p-inputtext" placeholder="Mensaje" />
+                            <input type="text" pInputText class="p-inputtext" placeholder="Mensaje" #message />
                         </div>
     
-                        <button type="button" class="p-button">
+                        <button type="button" class="p-button" (click)="sendContactMail(name.value, email.value, message.value)">
                             <span class="p-button-text">ENVIAR</span>
                         </button>
                     </div>

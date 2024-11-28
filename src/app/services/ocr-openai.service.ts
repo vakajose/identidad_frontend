@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { CedulaImageRequest } from '../models/backend-dto.model';
+import { CedulaImageRequest, EmailContactRequest } from '../models/backend-dto.model';
 import { Cedula } from '../models/token.model';
 import { Observable } from 'rxjs';
 
@@ -20,7 +20,10 @@ export class OcrOpenaiService {
     return this.http.post<Cedula>(`${this.path}/procesar-cedula`, images, { headers });
   }
 
-
+  sendContactMail(mensaje: EmailContactRequest): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.path}/email`, mensaje, { headers });
+  }
 
 }
 
